@@ -1,11 +1,3 @@
-drop table Name;
-
-CREATE TABLE IF NOT EXISTS Name(
-	ID         BIGINT PRIMARY KEY auto_increment,
-  	FIRSTNAME       VARCHAR(30),
-  	LASTNAME       VARCHAR(30)
-);
-
 delete from Name;
 
 insert into Name values (0,'John','Big');

@@ -10,15 +10,17 @@ import javax.persistence.PersistenceContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.application.spring.model.Name;
 import com.application.spring.repository.NameJpaRepository;
 
-@ContextConfiguration(locations={"classpath:com/application/spring/db/applicationTest-context.xml"})
+@SpringApplicationConfiguration(classes = Application.class)
 @RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
 public class NamePersistenceTests {
 	
 	@Autowired
@@ -42,6 +44,9 @@ public class NamePersistenceTests {
 		name.setLastName("Elo");
 		name = nameJpaRepo.saveAndFlush(name);
 		System.out.println("----->"+name.getId()+"\n");
+		for(Name n:nameJpaRepo.findAll()){
+			System.out.println("------>"+n.getFirstName());
+		}
 		entityManager.clear();
 		Name name2 = nameJpaRepo.findOne(name.getId());
 		
