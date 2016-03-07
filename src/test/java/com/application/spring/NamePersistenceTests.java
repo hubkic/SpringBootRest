@@ -32,7 +32,7 @@ public class NamePersistenceTests {
 	@Test
 	public void testFind() throws Exception{
 		Name name = nameJpaRepo.findOne(1l);
-		System.out.println("----->"+name.getFirstName()+"\n");
+		System.out.println("----->"+name.getFirstName()+name.getCity().getName()+"\n");
 		assertEquals("Stephen",name.getFirstName());
 	}
 	
